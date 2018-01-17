@@ -15,9 +15,12 @@ VIMRC=$HOME/.vimrc
 VIMDIR=$HOME/.vim
 GCONF=$HOME/.gitconfig
 
-declare -a to_backup=($DOTFILES $DOTFZF $DOTLOCAL $ZSHRC $VIMRC $VIMDIR $GCONF)
+declare -a to_backup=($DOTFILES $DOTFZF $DOTLOCAL $ZSHRC
+                      $VIMRC $VIMDIR $GCONF)
 declare -a dirs_to_create=($DOTFILES $DOTFZF $VIMDIR)
-declare -a files_to_create=($ZSHRC $VIMRC $GCONF)
+declare -a files_to_link=("$DOTFILES/zshrc:$ZSHRC"
+                          "$DOTFILES/vimrc:$VIMRC"
+                          "$DOTFILES/gitconfig:$GCONF")
 
 cd $HOME
 
@@ -37,16 +40,19 @@ for i in "${dirs_to_create[@]}"; do
   mkdir $i;
 done
 
+for i in "${files_to_link[@]}"; do
+  KEY=${i%%:*}
+  VAL=${i#*:}
+  echo "Creating symlink: $VAL -> $KEY";
+  ln -s $KEY $VAL;
+done
+
 cd $DOTFILES
 
 git init
 git remote add origin git@github.com:zachschultz/dotfiles.git
 git pull origin master
 git submodule update --init --recursive
-
-ln -s $DOTFILES/gitconfig $GCONF
-ln -s $DOTFILEs/vimrc $VIMRC
-ln -s $DOTFILES/zshrc $ZSHRC
 
 echo
 echo "Done!"
