@@ -1,0 +1,48 @@
+#!/bin/bash
+
+if [ -z "$HOME" ]; then
+  echo "Where is your \$HOME?";
+  exit 1;
+fi
+
+# Set up consts
+GITCLONE="git clone --depth=1"
+DOTFILES=$HOME/.dotfiles
+DOTFZF=$HOME/.fzf
+DOTLOCAL=$HOME/.local/share/dotfiles
+ZSHRC=$HOME/.zshrc
+VIMRC=$HOME/.vimrc
+VIMDIR=$HOME/.vim
+GCONF=$HOME/.gitconfig
+
+declare -a to_backup=($DOTFILES $DOTFZF $DOTLOCAL $ZSHRC $VIMRC $VIMDIR $GCONF)
+declare -a dirs_to_create=($DOTFILES $DOTFZF $VIMDIR)
+declare -a files_to_create=($ZSHRC $VIMRC $GCONF)
+
+cd $HOME
+
+for item in "${to_backup[@]}"; do
+  if [ -d $item ]; then
+    echo "$item exists already, moving to $item.old";
+    mv $item "$item.old";
+  fi
+done
+
+for i in "${dirs_to_create[@]}"; do
+  echo "Creating directory: $i";
+  mkdir $i;
+done
+
+cd $DOTFILES
+
+git init
+git remote add origin git@github.com:zachschultz/dotfiles.git
+git pull origin master
+git submodule update --init --recursive
+
+ln -s $DOTFILES/gitconfig $GCONF
+ln -s $DOTFILEs/vimrc $VIMRC
+ln -s $DOTFILES/zshrc $ZSHRC
+
+echo
+echo "Done!"
