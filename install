@@ -22,9 +22,9 @@ declare -a files_to_create=($ZSHRC $VIMRC $GCONF)
 cd $HOME
 
 for item in "${to_backup[@]}"; do
-  if [ -d $item ] || [ -f $item ]; then
+  if [ -d $item ] || [ -f $item ] || [ -L $item ]; then
     echo "$item exists already, moving to $item.old";
-    if [ -d "$item.old" ] || [ -f "$item.old" ]; then
+    if [ -d "$item.old" ] || [ -f "$item.old" ] || [ -L "$item.old" ]; then
       echo "$item.old also exists already, removing it";
       rm -rf "$item.old";
     fi
