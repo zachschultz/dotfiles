@@ -24,6 +24,18 @@ declare -a files_to_link=("$DOTFILES/zshrc:$ZSHRC"
 
 cd $HOME
 
+echo "I am going to search for the following files and back them up"
+printf '%s\n' "${to_backup[@]}"
+echo
+read -p "Continue? [Y\\n]" -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+  [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
+fi
+
+##############################################
+# Backup and remove existing files
+##############################################
 for item in "${to_backup[@]}"; do
   if [ -d $item ] || [ -f $item ] || [ -L $item ]; then
     echo "$item exists already, moving to $item.old";
@@ -35,11 +47,17 @@ for item in "${to_backup[@]}"; do
   fi
 done
 
+##############################################
+# Create directories
+##############################################
 for i in "${dirs_to_create[@]}"; do
   echo "Creating directory: $i";
   mkdir $i;
 done
 
+##############################################
+# Symlink dotfiles to home dir
+##############################################
 for i in "${files_to_link[@]}"; do
   KEY=${i%%:*}
   VAL=${i#*:}
@@ -49,6 +67,9 @@ done
 
 cd $DOTFILES
 
+##############################################
+# Clone the dotfiles repo 
+##############################################
 git init
 git remote add origin git@github.com:zachschultz/dotfiles.git
 git pull origin master
