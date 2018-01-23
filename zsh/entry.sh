@@ -1,5 +1,13 @@
 #!/usr/bin/env zsh
 
+# Get the OS the user is on for OS-specific commands
+os="$(uname -s)"
+case "${os}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    *)          machine="UNKNOWN:${os}"
+esac
+
 export DOTFILES=$HOME/.dotfiles
 export INCLUDES=$HOME/.local/share/dotfiles
 
@@ -8,7 +16,11 @@ source $DOTFILES/zsh/env.sh
 # Include aliases
 source $DOTFILES/zsh/aliases.sh
 # Setup dircolors for LS
-eval `dircolors $DOTFILES/zsh/dircolors`
+if [[ $machine == "Linux" ]]; then
+    eval `dircolors $DOTFILES/zsh/dircolors`
+elif [[ $machine == "Mac" ]]; then
+    export CLICOLOR=YES
+fi
 
 #################################################
 # Plugins 
@@ -23,12 +35,6 @@ HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
-# If on Linux, include exports from linuxbrew config
-os="$(uname -s)"
-case "${os}" in
-    Linux*)     machine=Linux;;
-    *)          machine="UNKNOWN:${os}"
-esac 
 if [[ $machine == "Linux" ]]; then
   source ~/.dotfiles/linuxbrew/exports.sh
 fi
