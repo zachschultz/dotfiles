@@ -28,7 +28,7 @@ alias nr="npm run"
 alias npx="npx --no-install"
 
 # paths
-alias do="cd ~/.dotfiles"
+alias dot="cd ~/.dotfiles"
 alias de="cd ~/dev"
 
 # colorized cat
