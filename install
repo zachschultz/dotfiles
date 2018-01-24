@@ -82,6 +82,9 @@ $GITCLONE https://github.com/junegunn/fzf.git $DOTFZF
 # Install fzf (enable key-bindings, completion, disable updating shell config files)
 $DOTFZF/install --key-bindings --completion --no-update-rc
 
+# Install software
+sh $DOTFILES/scripts/install.sh
+
 # Clear old completions
 cd $HOME
 rm -f $HOME/.zcompdump*
