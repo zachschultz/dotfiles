@@ -7,6 +7,7 @@ case "${os}" in
     Darwin*)    machine=Mac;;
     *)          machine="UNKNOWN:${os}"
 esac
+export MACHINE=$machine
 
 export DOTFILES=$HOME/.dotfiles
 export INCLUDES=$HOME/.local/share/dotfiles
@@ -16,14 +17,14 @@ source $DOTFILES/zsh/env.sh
 # Include aliases
 source $DOTFILES/zsh/aliases.sh
 # Setup dircolors for LS
-if [[ $machine == "Linux" ]]; then
+if [[ $MACHINE == "Linux" ]]; then
     eval `dircolors $DOTFILES/zsh/dircolors`
-elif [[ $machine == "Mac" ]]; then
+elif [[ $MACHINE == "Mac" ]]; then
     export CLICOLOR=YES
 fi
 
 #################################################
-# Plugins 
+# Plugins
 ################################################
 source $INCLUDES/zsh-completions/zsh-completions.plugin.zsh
 source $INCLUDES/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -35,7 +36,7 @@ HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
-if [[ $machine == "Linux" ]]; then
+if [[ $MACHINE == "Linux" ]]; then
   source ~/.dotfiles/linuxbrew/exports.sh
 fi
 

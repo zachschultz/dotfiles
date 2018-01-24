@@ -8,8 +8,12 @@ alias rm='rm -i'
 
 alias cl="clear"
 
-# Colorize ls
-alias ls="ls --color=auto"
+# Colorize and make LS shortcuts
+if [[ $MACHINE == "Linux" ]]; then
+  alias ls="ls --color=auto"
+else
+  alias ls="ls -G"
+fi
 alias l="ls"
 alias la="ls -laF"
 alias ll="ls -lF"
@@ -24,8 +28,8 @@ alias nr="npm run"
 alias npx="npx --no-install"
 
 # paths
-alias p="cd ~/Projects"
-alias d="cd ~/.dotfiles"
+alias do="cd ~/.dotfiles"
+alias de="cd ~/dev"
 
 # colorized cat
 alias cat="ccat"
