@@ -56,6 +56,15 @@ for i in "${dirs_to_create[@]}"; do
 done
 
 ##############################################
+# Clone the dotfiles repo
+##############################################
+cd $DOTFILES
+git init
+git remote add origin git@github.com:zachschultz/dotfiles.git
+git pull origin master
+git submodule update --init --recursive
+
+##############################################
 # Symlink dotfiles to home dir
 ##############################################
 for i in "${files_to_link[@]}"; do
@@ -64,16 +73,6 @@ for i in "${files_to_link[@]}"; do
   echo "Creating symlink: $VAL -> $KEY";
   ln -s $KEY $VAL;
 done
-
-cd $DOTFILES
-
-##############################################
-# Clone the dotfiles repo 
-##############################################
-git init
-git remote add origin git@github.com:zachschultz/dotfiles.git
-git pull origin master
-git submodule update --init --recursive
 
 # Clone some plugins
 $GITCLONE https://github.com/zsh-users/zsh-completions.git $DOTLOCAL/zsh-completions
