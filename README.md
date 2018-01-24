@@ -1,4 +1,4 @@
-@zachschultz's dotfiles
+# @zachschultz's dotfiles
 
 To install, run the following command
 
