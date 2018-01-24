@@ -1,10 +1,18 @@
-# custom cd & ls function
-cdl () { cd "$@" && ls; }
+# Remove any existing aliases
+unalias -a
 
-# common commands
+# Make risky commands interactive
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+
 alias cl="clear"
-alias ls="gls --color -lh --group-directories-first"
-alias la="gls --color -lha --group-directories-first"
+
+# Colorize ls
+alias ls="ls --color=auto"
+alias l="ls"
+alias la="ls -laF"
+alias ll="ls -lF"
 
 # npm
 alias ni="npm install"
@@ -28,8 +36,10 @@ alias -g G='| grep'
 # recursively delete `.DS_Store` files from current folder
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
-# serve current directory on port 8080
-alias serve="python -m SimpleHTTPServer 8080"
-
 # get current ip
 alias getip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
+
+# Call `ls` after cd
+function cd {
+  builtin cd "$@" && ls -F
+}
