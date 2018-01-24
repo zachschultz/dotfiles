@@ -3,5 +3,7 @@
 To install, run the following command
 
 ```
-source <(curl -s https://raw.githubusercontent.com/zachschultz/dotfiles/master/install)
+curl -s https://raw.githubusercontent.com/zachschultz/dotfiles/master/install > install &&  \
+chmod +x install && \
+./install
 ```
