@@ -45,6 +45,7 @@ fi
 zstyle ':completion:*' menu select
 zstyle ':completion:*' completer _complete
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 
 # Enable zsh-completions
 autoload -U compinit && compinit
