@@ -73,3 +73,6 @@ setopt share_history
 # Prompt
 ################################################
 source $DOTFILES/zsh/prompt.sh
+
+# Include path
+source $DOTFILES/zsh/path.sh
