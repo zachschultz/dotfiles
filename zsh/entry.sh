@@ -10,7 +10,8 @@ esac
 export MACHINE=$machine
 
 export DOTFILES=$HOME/.dotfiles
-export INCLUDES=$HOME/.local/share/dotfiles
+export LOCAL=$HOME/.local
+export INCLUDES=$LOCAL/share/dotfiles
 
 # Include environment
 source $DOTFILES/zsh/env.sh
@@ -73,6 +74,9 @@ setopt share_history
 # Prompt
 ################################################
 source $DOTFILES/zsh/prompt.sh
+
+# AWS CLI ZSH completions
+source $LOCAL/bin/aws_zsh_completer.sh
 
 # Include path
 source $DOTFILES/zsh/path.sh
