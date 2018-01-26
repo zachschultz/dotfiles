@@ -1,6 +1,10 @@
 # Remove any existing aliases
 unalias -a
 
+# Minikube and kubectl shortcuts
+alias mk="minikube"
+alias kl="kubectl"
+
 # Make risky commands interactive
 alias cp='cp -i'
 alias mv='mv -i'
@@ -21,6 +25,11 @@ fi
 alias l="ls"
 alias la="ls -laF"
 alias ll="ls -lF"
+
+# Call `ls` after cd
+function cd {
+  builtin cd "$@" && ls -F
+}
 
 # npm
 alias ni="npm install"
@@ -46,8 +55,3 @@ alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
 # get current ip
 alias getip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
-
-# Call `ls` after cd
-function cd {
-  builtin cd "$@" && ls -F
-}
