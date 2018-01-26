@@ -14,13 +14,15 @@ ZSHRC=$HOME/.zshrc
 VIMRC=$HOME/.vimrc
 VIMDIR=$HOME/.vim
 GCONF=$HOME/.gitconfig
+TMUXCONF=$HOME/.tmux.conf
 
 declare -a to_backup=($DOTFILES $DOTFZF $DOTLOCAL $ZSHRC
-                      $VIMRC $VIMDIR $GCONF)
+                      $VIMRC $VIMDIR $GCONF $TMUXCONF)
 declare -a dirs_to_create=($DOTFILES $DOTFZF $VIMDIR)
 declare -a files_to_link=("$DOTFILES/zshrc:$ZSHRC"
                           "$DOTFILES/vimrc:$VIMRC"
-                          "$DOTFILES/gitconfig:$GCONF")
+                          "$DOTFILES/gitconfig:$GCONF"
+			  "$DOTFILES/tmux.conf:$TMUXCONF")
 
 cd $HOME
 

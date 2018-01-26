@@ -8,6 +8,10 @@ alias rm='rm -i'
 
 alias cl="clear"
 
+# AWS dev (localstack, SAM, etc.)
+alias awsl="awslocal"
+alias saml="sam local"
+
 # Colorize and make LS shortcuts
 if [[ $MACHINE == "Linux" ]]; then
   alias ls="ls --color=auto"
