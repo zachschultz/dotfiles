@@ -1,5 +1,5 @@
 # Reload zshrc config
-source ~/.zshrc
+alias reload="source ~/.zshrc"
 
 # Remove any existing aliases
 unalias -a
