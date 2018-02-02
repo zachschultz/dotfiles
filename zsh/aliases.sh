@@ -1,3 +1,6 @@
+# Reload zshrc config
+source ~/.zshrc
+
 # Remove any existing aliases
 unalias -a
 
@@ -30,6 +33,10 @@ alias ll="ls -lF"
 function cd {
   builtin cd "$@" && ls -F
 }
+
+
+# Quick cd
+alias c="cd"
 
 # npm
 alias ni="npm install"
