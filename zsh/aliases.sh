@@ -1,8 +1,12 @@
-# Reload zshrc config
-alias reload="source ~/.zshrc"
-
 # Remove any existing aliases
 unalias -a
+
+#############################
+# Place all new aliases below
+#############################
+
+# Reload zshrc config
+alias reload="source ~/.zshrc"
 
 # Minikube and kubectl shortcuts
 alias mk="minikube"
