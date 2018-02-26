@@ -19,10 +19,10 @@ TMUXCONF=$HOME/.tmux.conf
 declare -a to_backup=($DOTFILES $DOTFZF $DOTLOCAL $ZSHRC
                       $VIMRC $VIMDIR $GCONF $TMUXCONF)
 declare -a dirs_to_create=($DOTFILES $DOTFZF $VIMDIR)
-declare -a files_to_link=("$DOTFILES/zshrc:$ZSHRC"
-                          "$DOTFILES/vimrc:$VIMRC"
+declare -a files_to_link=("$DOTFILES/zsh/zshrc:$ZSHRC"
+                          "$DOTFILES/vim/vimrc:$VIMRC"
                           "$DOTFILES/gitconfig:$GCONF"
-			  "$DOTFILES/tmux.conf:$TMUXCONF")
+			  "$DOTFILES/tmux/tmux.conf:$TMUXCONF")
 
 cd $HOME
 
