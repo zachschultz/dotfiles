@@ -1,0 +1,3 @@
+[submodule "aur/autorandr-git"]
+	path = aur/autorandr-git
+	url = https://aur.archlinux.org/autorandr-git.git
