@@ -1,0 +1,69 @@
+Xft.dpi: 210
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+Xcursor.size: 40
+Xcursor.theme: Captaine
+! =========================
+! ========= ROFI ==========
+! =========================
+
+rofi.terminal:      termite
+rofi.ssh-client:    ssh
+rofi.width:         30
+
+
+rofi.color-enabled: true
+rofi.color-window: argb:ee273238, #273238, argb:3a1e2529
+rofi.color-normal: argb:00273238, #c1c1c1, argb:3a273238, #394249, #ffffff
+rofi.color-active: argb:00273238, #80cbc4, argb:3a273238, #394249, #80cbc4
+rofi.color-urgent: argb:00273238, #ff1844, argb:3a273238, #394249, #ff1844
+
+! =========================
+! ======== COLORS =========
+! =========================
+
+*background:  #111111
+*foreground:  #eeffff
+
+!black
+*trueblack:   #000000
+*black:       #111111
+*color0:      #212121
+*color8:      #8c8c8c
+
+!red
+*color1:      #f07178
+*color9:      #f07178
+
+!green
+*color2:      #5af78e
+*color10:     #5af78e
+
+!yellow
+*color3:      #ffcb6b
+*color11:     #ffcb6b
+
+!blue
+*color4:      #57c7ff
+*color12:     #57c7ff
+
+!magenta
+*color5:      #c792ea
+*color13:     #c792ea
+
+!cyan
+*color6:      #89ddff
+*color14:     #89ddff
+
+!white
+*color7:      #eeffff
+*color15:     #eeffff
+
+!new
+!*color8:      #191a1e
+*color16:     #191a1e
