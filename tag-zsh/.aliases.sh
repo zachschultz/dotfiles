@@ -4,7 +4,7 @@ unalias -a
 #############################
 # Work - MSH aliases
 #############################
-alias tunnel='pkill -9 autossh; autossh -M0 -Ng \
+alias tunnel="pkill -9 autossh; autossh -M0 -Ng \
  -L 3307:deepwheel-mysql.test:3306 \
  -L 3308:dapi-rest-api.test:80 \
  -L 3309:core-services-api.test:80 \
@@ -16,13 +16,11 @@ alias tunnel='pkill -9 autossh; autossh -M0 -Ng \
  -L 3316:charon.test:443 \
  -L 3317:hollywood.test:80 \
  -L 3318:navigator.test:80 \
- -L 3319:response-wizard-queue-api-mysql.test:3306 \
  -L 3320:contacts.test:80 \
  -L 3321:aviary-content.test:80 \
  -L 3322:charon-test.kivn1g.0001.use1.cache.amazonaws.com:6379 \
  -L 3323:response-wizard-queue-api.test:80 \
  -L 3324:task-api.test:80 \
- -L 3325:aviary-content.test:80 \
  -L 3326:content-life-cycle-api.test:80 \
  -L 3327:event-bus-consumer.test:80 \
  -L 3328:mailer.test:80 \
@@ -30,7 +28,7 @@ alias tunnel='pkill -9 autossh; autossh -M0 -Ng \
  -L 3330:customer-identity-api.test:80 \
  -L 3331:customer-notifications.test:80 \
  -L 3332:salesforce-proxy-application.test:80 \
- -L 3333:document-generator.test:80 \
+ -L 3333:response-wizard-queue-api-mysql.test:3306 \
  -L 3334:rwqueue-test.kivn1g.0001.use1.cache.amazonaws.com:6379 \
  -L 3335:scheduler.test:80 \
  -L 3336:insights-api.test:80 \
@@ -47,7 +45,14 @@ alias tunnel='pkill -9 autossh; autossh -M0 -Ng \
  -L 3348:customer-eligibility-mysql.test:3306 \
  -L 3349:customer-website-api.test:80 \
  -L 3350:entity-service.test:80 \
- bastion.cloud.mainstreethub.com'
+ -L 5555:instagram-lockout-api-mysql.test:3306 \
+ -L 8000:dapi-app.prod:80 \
+ -L 8001:dapi-app.test:80 \
+ -L 3366:dapi-mysql.test:3306 \
+ -L 5602:$(vpc-info kibana-dapi-queue-log-prod):5601 \
+ bastion.cloud.mainstreethub.com &"
+
+alias kibana='ssh -fNg -L 5601:$(aws ec2 describe-instances --filters "Name=tag:application,Values=logging" "Name=tag:environment,Values=infrastructure" "Name=tag:role,Values=kibana" "Name=tag:elasticsearch_cluster_name,Values=elk" "Name=instance-state-name,Values=running" --query "Reservations[*].Instances[*].PrivateIpAddress" --output text | head -n1):5601 bastion.cloud.mainstreethub.com'
 
 #############################
 # Place all new aliases below
@@ -55,6 +60,29 @@ alias tunnel='pkill -9 autossh; autossh -M0 -Ng \
 
 # Reload zshrc config
 alias reload="source ~/.zshrc"
+alias zrc="nvim $ZSH_DOTFILES/zshrc"
+alias zarc="nvim $ZSH_DOTFILES/.aliases.sh"
+alias tmc="nvim ~/.dotfiles/tag-tmux/tmux.conf"
+
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
+
+alias vrc='nvim ~/.dotfiles/vim/vimrc'
+alias vprc='nvim ~/.dotfiles/vim/plugins.vim'
+
+alias did="vim +'normal Go' +'r!date' ~/did.txt"
+
+alias t="todo.sh"
+
+# Tmux shortcuts
+alias tls="tmux ls"
+function tmux_attach {
+  tmux attach -t "$1"
+}
+alias ta="tmux_attach"
 
 # Minikube and kubectl shortcuts
 alias mk="minikube"
@@ -90,21 +118,9 @@ function cd {
 # Quick cd
 alias c="cd"
 
-# npm
-alias ni="npm install"
-alias nid="npm install --save-dev"
-alias nun="npm uninstall"
-alias ns="npm start"
-alias nt="npm test"
-alias nr="npm run"
-alias npx="npx --no-install"
-
 # paths
 alias dot="cd ~/.dotfiles"
-alias de="cd ~/dev"
-
-# colorized cat
-alias cat="ccat"
+alias dev="cd ~/dev"
 
 # grep
 alias -g G='| grep'
@@ -114,3 +130,10 @@ alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
 # get current ip
 alias getip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
+
+function mdless() {
+  pandoc -s -f markdown -t man $1 | groff -T utf8 -man | less
+}
+umedit() { mkdir -p ~/.notes; vim ~/.notes/$1; }
+um() { mdless ~/.notes/"$1"; }
+umls() { ls ~/.notes }

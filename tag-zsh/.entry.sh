@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+export DOTFILES=$HOME/.dotfiles
+export ZSH_DOTFILES=$DOTFILES/tag-zsh
+
 # Get the OS the user is on for OS-specific commands
 os="$(uname -s)"
 case "${os}" in
@@ -9,18 +12,24 @@ case "${os}" in
 esac
 export MACHINE=$machine
 
-export DOTFILES=$HOME/.dotfiles
 export LOCAL=$HOME/.local
 export INCLUDES=$LOCAL/share/dotfiles
 
+export EDITOR=nvim
+
+################################################
+# Source important files
+# ##############################################
 # Include environment
-source $DOTFILES/zsh/env.sh
+source $ZSH_DOTFILES/.env.sh
 # Include aliases
-source $DOTFILES/zsh/aliases.sh
+source $ZSH_DOTFILES/.aliases.sh
+source $ZSH_DOTFILES/.prompt.sh
+# Include path
+source $ZSH_DOTFILES/.path.sh
+
 # Setup dircolors for LS
-if [[ $MACHINE == "Linux" ]]; then
-    eval `dircolors $DOTFILES/zsh/dircolors`
-elif [[ $MACHINE == "Mac" ]]; then
+if [[ $MACHINE == "Mac" ]]; then
     export CLICOLOR=YES
 fi
 
@@ -36,10 +45,6 @@ source $HOME/.fzf.zsh
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-
-if [[ $MACHINE == "Linux" ]]; then
-  source ~/.dotfiles/linuxbrew/exports.sh
-fi
 
 ################################################
 # ZSH configurations
@@ -73,10 +78,6 @@ setopt share_history
 ################################################
 # Prompt
 ################################################
-source $DOTFILES/zsh/prompt.sh
 
 # AWS CLI ZSH completions
 source $LOCAL/bin/aws_zsh_completer.sh
-
-# Include path
-source $DOTFILES/zsh/path.sh
