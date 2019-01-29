@@ -66,7 +66,8 @@ alias dots="cd $DOTFILES"
 alias zrc="nvim $DOTFILES/zshrc"
 alias zerc="nvim $ZSH_DOTFILES/entry.sh"
 alias zarc="nvim $ZSH_DOTFILES/aliases.sh"
-alias tmc="nvim ~/.dotfiles/tmux/tmux.conf"
+alias tmc="nvim $DOTFILES/tmux.conf"
+alias tmlc="nvim $DOTFILES/tmux/tmux.conf.local"
 
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 
