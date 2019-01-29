@@ -15,6 +15,7 @@ rm -rf fonts
 
 # tmux
 brew install tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # python
 brew install python
