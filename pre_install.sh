@@ -15,6 +15,11 @@ rm -rf fonts
 
 # tmux
 brew install tmux
+
+if [ "$(uname)" == "Darwin" ]; then
+  brew install reattach-to-user-namespace
+fi
+
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # python
