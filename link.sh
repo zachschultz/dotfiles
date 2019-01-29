@@ -1,5 +1,5 @@
 #!/bin/bash
-files="vimrc zshrc gitconfig"
+files="vimrc zshrc tmux.conf gitconfig"
 dir="${HOME}/.dotfiles"
 olddir="${HOME}/dotfiles_old"
 
