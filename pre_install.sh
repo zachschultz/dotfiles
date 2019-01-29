@@ -13,10 +13,12 @@ cd fonts
 cd ..
 rm -rf fonts
 
-#python
+# tmux
+brew install tmux
+
+# python
 brew install python
 
-git clone https://github.com/powerline/fonts.git --depth=1
 # oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
