@@ -15,6 +15,8 @@ rm -rf fonts
 
 # tmux
 brew install tmux
+brew install reattach-to-user-namespace
+
 
 # python
 brew install python
